@@ -19,42 +19,33 @@ class App extends React.Component {
   }
   
   
-  toggleTodo = clicked =>{
-      const newToDoList = this.state.toDoList.map(todo=>{
-          
-          if(todo.id === clicked) {
-            return{
-                ...todo,
-                completed: !todo.completed
-                
-            } 
-            
-        } else{
-            return todo;
-        }
-            });
-     
-     this.setState({
-         toDoList:newToDoList
-     });
-     
- };
+ toggleTodo = clicked => {
+  const newToDoList = this.state.toDoList.map(todo => {
+    if (todo.id === clicked) {
+      return {
+        ...todo,
+        completed: !todo.completed
+      };
+    } else {
+      return todo;
+    }
+  });
+
+  this.setState({
+    toDoList: newToDoList
+  });
+};
+
   
-clearTodo = itemId =>{
-    console.log('Got it', itemId)
- this.setState({toDoList:this.state.toDoList.filter(item =>{
-               if(itemId === item.completed ){
-                return{...item,completed:!item.completed}
-            
-            
-               return item;
-            
-            }
-        }),
-   });
+clearTodo = () => {
+  const filterted = this.state.toDoList.filter(item => {
+    return !item.completed;
+  });
+  this.setState({
+    toDoList: filterted
+  });
+};
 
-
-}
   
   
   addTodo = toDoItem =>{
